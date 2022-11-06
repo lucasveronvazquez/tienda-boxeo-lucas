@@ -1,0 +1,23 @@
+
+.carrito{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.productoEnCarro{
+    display: flex;
+    flex-direction: row;
+    border:2px solid black;
+    padding-left: 200px;
+}
+
+.imagenCarro img{
+    width: 80px;
+  height: 80px;
+} 
+
+.infoProducto{
+    display: flex;
+    flex-direction: column;
+}

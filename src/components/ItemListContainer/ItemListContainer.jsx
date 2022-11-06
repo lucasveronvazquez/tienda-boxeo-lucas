@@ -1,9 +1,10 @@
-import './ItemListContainer.css'
-
-import {ItemList} from '../ItemList/ItemList'
-import { products } from '../../dataBase/products';
+import './ItemListContainer.css';
+import {ItemList} from '../ItemList/ItemList';
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
+import { db } from '../../utils/firebase';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+
 
 export const ItemListContainer = () => {
 
@@ -11,29 +12,38 @@ export const ItemListContainer = () => {
 
     const [productos, setProductos] = useState([]);
 
+    const  [loading, setLoading] = useState(true);
 
-    const promesa = new Promise((resolve, reject)=>{
-        setTimeout(() => {
-            resolve(products);
-        }, 2000);
-    })
+
+   
     useEffect(()=>{
-        promesa.then((response)=>{
-           if (categoryId){
+       
+    const queryRef = categoryId ? query (collection(db,"items"), where("category","==", categoryId)):collection(db, "items");
+    getDocs(queryRef).then((response)=>{
+        const results = response.docs;
+        const docs = results.map(doc=>{
+            return{
+                ...doc.data(),
+                id:doc.id
+             }
+            })
+            setProductos(docs);
+            setLoading(false);
+    });
+    
 
-            const productsFiltered = response.filter(elm => elm.category === categoryId);
-            setProductos(productsFiltered);
-
-           }else{
-             setProductos(response);
-          }
-        })
     },[categoryId])
 
     return(
         <div className="container">
+            
+            {
+                loading ?
+                <p>cargando..</p> :
+
             <ItemList items={productos}/>
-            Lista de productos
+            
+            }
             
         </div>
         

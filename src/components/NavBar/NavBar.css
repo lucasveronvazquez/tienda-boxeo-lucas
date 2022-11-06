@@ -1,5 +1,9 @@
+*{
+    text-decoration: none;
+    font-size:20px;
+}
 
-.navegation{
+.navBar{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -14,7 +18,38 @@
     display: flex;
     flex-direction: row;
     gap: 20px;
-    font-size: x-large solid black;
+    font-size:x-large black;
+}
+
+#link1:hover{
+    cursor: pointer;
+    color: white;
+    background-color: rgb(228, 69, 58);
+    border-radius: 15%;
+}
+
+#link1:focus{
+    outline: none;
+}
+#link2:hover{
+    cursor: pointer;
+    color: white;
+    background-color: rgb(228, 69, 58);
+    border-radius: 15%;
+}
+
+#link2:focus{
+    outline: none;
+}
+#link3:hover{
+    cursor: pointer;
+    color: white;
+    background-color: rgb(228, 69, 58);
+    border-radius: 10%;
+}
+
+#link3:focus{
+    outline: none;
 }
 
 .claseActiva{
@@ -30,3 +65,5 @@
     height: 10%;
     border-radius: 20%;
     }
+
+    
